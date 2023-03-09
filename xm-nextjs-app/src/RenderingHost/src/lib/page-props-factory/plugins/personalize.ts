@@ -36,16 +36,11 @@ class PersonalizePlugin implements Plugin {
     )} nnnnnnnnnnnnnnxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
     // Modify layoutData to use specific variant instead of default
     // This will also set the variantId on the Sitecore context so that it is accessible here
-    personalizeLayout(props.layoutData, "32d79668d64646e59583157ae3da1528");
+      personalizeLayout(props.layoutData, personalizeData.variantId);
 
     return props;
   }
 }
-function isString(arg: any): arg is string {
-  return typeof arg === 'string'
-}
-function isStringArray(arg: any): arg is string[] {
-  return Array.isArray(arg) && arg.every(isString);
-}
+
 
 export const personalizePlugin = new PersonalizePlugin();

@@ -66,7 +66,7 @@ const CdpPageView = (): JSX.Element => {
     }
     const language = route.itemLanguage || config.defaultLanguage;
     const pageVariantId = CdpHelper.getPageVariantId(route.itemId, language, variantId as string);
-    createPageView(route.name, language, "jnjr");
+      createPageView(route.name, language, pageVariantId);
   }, [pageState, route, variantId]);
   console.log(`${variantId}nelenelenelenelenlenooooooooooooooooooooooooooooooooooooooooooooooo`)
   console.log(`${variantId}nelenelenelenelenlenooooooooooooooooooooooooooooooooooooooooooooooo`)
