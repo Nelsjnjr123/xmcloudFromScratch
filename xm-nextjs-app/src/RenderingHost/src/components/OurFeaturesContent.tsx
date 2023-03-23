@@ -1,88 +1,66 @@
-import React from 'react';
+/**
+ * Defines the properties for a single feature box.
+ * @interface SingleFeatureBoxProps
+ * @property {string} icon - The icon to display in the feature box.
+ * @property {string} bgColor - The background color of the feature box.
+ * @property {string} title - The title of the feature box.
+ * @property {string} description - The description of the feature box.
+ */
 
-interface OurFeaturesContentProps {
-  // Define props here
+/**
+ * Defines the properties for the OurFeaturesContent component.
+ * @interface OurFeaturesContentProps
+ * @property {SingleFeatureBoxProps[]} featureBoxes - An array of SingleFeatureBoxProps objects representing the feature boxes to display.
+ * @property {string} sectionTitle - The title of the section containing the feature boxes.
+ * @property {string} sectionDescription - The description of the section containing the feature boxes.
+ */
+
+/**
+ * Renders a section containing multiple feature boxes.
+ * @function OurFeaturesContent
+ * @param {OurFeaturesContentProps} props - The properties to pass to the component.
+ * @returns {JSX.Element} - The rendered section containing the feature boxes.
+ */
+
+interface SingleFeatureBoxProps {
+  icon: string;
+  bgColor: string;
+  title: string;
+  description: string;
 }
 
-const OurFeaturesContent: React.FC<OurFeaturesContentProps> = ({/* Destructure props here */}) => {
+interface OurFeaturesContentProps {
+  featureBoxes: SingleFeatureBoxProps[];
+  sectionTitle: string;
+  sectionDescription: string;
+}
+
+const OurFeaturesContent: React.FC<OurFeaturesContentProps> = ({ featureBoxes, sectionTitle, sectionDescription }) => {
   return (
     <section className="features-area ptb-70 bg-f6f4f8">
-                <div className="container">
-                    <div className="section-title">
-                        <h2>Our features</h2>
-                        <div className="bar"></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
+      <div className="container">
+        <div className="section-title">
+          <h2>{sectionTitle}</h2>
+          <div className="bar"></div>
+          <p>{sectionDescription}</p>
+        </div>
 
-                    <div className="row">
-                        <div className="col-lg-4 col-sm-6 col-md-6">
-                            <div className="single-features-box">
-                                <div className="icon">
-                                    <i className="flaticon-settings"></i>
-                                </div>
-
-                                <h3>Incredible infrastructure</h3>
-                                <p>Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6 col-md-6">
-                            <div className="single-features-box">
-                                <div className="icon bg-f78acb">
-                                    <i className="flaticon-envelope-of-white-paper"></i>
-                                </div>
-
-                                <h3>Email notifications</h3>
-                                <p>Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6 col-md-6">
-                            <div className="single-features-box">
-                                <div className="icon bg-cdf1d8">
-                                    <i className="flaticon-menu"></i>
-                                </div>
-
-                                <h3>Simple dashboard</h3>
-                                <p>Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6 col-md-6">
-                            <div className="single-features-box">
-                                <div className="icon bg-c679e3">
-                                    <i className="flaticon-info"></i>
-                                </div>
-
-                                <h3>Information retrieval</h3>
-                                <p>Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6 col-md-6">
-                            <div className="single-features-box">
-                                <div className="icon bg-eb6b3d">
-                                    <i className="flaticon-cursor"></i>
-                                </div>
-
-                                <h3>Drag and drop functionality</h3>
-                                <p>Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-4 col-sm-6 col-md-6">
-                            <div className="single-features-box">
-                                <div className="icon">
-                                    <i className="flaticon-alarm"></i>
-                                </div>
-
-                                <h3>Deadline reminders</h3>
-                                <p>Lorem ipsum dolor amet, adipiscing, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
+        <div className="row">
+          {featureBoxes.map((featureBox, index) => (
+            <div key={index} className="col-lg-4 col-sm-6 col-md-6">
+              <div className="single-features-box">
+                <div className={`icon ${featureBox.bgColor}`}>
+                  <i className={featureBox.icon}></i>
                 </div>
-            </section>
+
+                <h3>{featureBox.title}</h3>
+                <p>{featureBox.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

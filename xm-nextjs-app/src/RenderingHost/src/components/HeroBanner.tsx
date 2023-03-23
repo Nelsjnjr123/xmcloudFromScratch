@@ -9,12 +9,6 @@ import {
   Link as JssLink,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 
-import FeaturedCard from './FeaturedCard';
-import ServicesCard from './ServicesCard';
-import OurFeaturesContent from './OurFeaturesContent';
-import FunFacts from './FunFacts';
-import AccountCreateArea from './AccountCreateArea';
-
 interface Fields {
   Title: Field<string>;
   Description: Field<string>;
@@ -26,6 +20,8 @@ export type HeroBannerProps = {
   params: { [key: string]: string };
   fields: Fields;
 };
+
+// Usage:
 
 const HeroBannerDeafultComponent = (props: HeroBannerProps): JSX.Element => (
   <div className={`main-banner ${props.params.styles}`}>
@@ -47,47 +43,35 @@ export const Default = (props: HeroBannerProps): JSX.Element => {
 
     return (
       <>
-      <div className={`main-banner ${props.params.styles}`} style={backgroundImageStyle}>
-        <div className={`d-table`}>
-          <div className={`d-table-cell`}>
-            <div className={`container`}>
-              <div className={`main-banner-content`}>
-                {props.fields?.Title && (
-                  <h1>
-                    <Text className={`banner-text`} field={props.fields.Title} />
-                  </h1>
-                )}
-                {props.fields?.Description && (
-                  <div>
-                    <JssRichText
-                      className={`banner-description`}
-                      field={props.fields.Description}
-                    />
-                  </div>
-                )}
-                 <Link href="/contact">
-                                    <a className="btn btn-primary">Get Started</a>
-                                </Link>
-                {!props.fields?.TargetURL && (
-                  <span>
-                    <JssLink className={`banner-link`} field={props.fields.TargetURL || 'Get Started'} />
-                  </span>
-                )}
+        <div className={`main-banner ${props.params.styles}`} style={backgroundImageStyle}>
+          <div className={`d-table`}>
+            <div className={`d-table-cell`}>
+              <div className={`container`}>
+                <div className={`main-banner-content`}>
+                  {props.fields?.Title && (
+                    <h1>
+                      <Text className={`banner-text`} field={props.fields.Title} />
+                    </h1>
+                  )}
+                  {props.fields?.Description && (
+                    <div>
+                      <JssRichText className={`banner-description`} field={props.fields.Description} />
+                    </div>
+                  )}
+                  <Link href="/contact">
+                    <a className="btn btn-primary">Get Started</a>
+                  </Link>
+                  {!props.fields?.TargetURL && (
+                    <span>
+                      <JssLink className={`banner-link`} field={props.fields.TargetURL || 'Get Started'} />
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-<FeaturedCard />
-               <ServicesCard />
-
-<OurFeaturesContent />
-            
-                  <FunFacts />
-        <AccountCreateArea />
-
-</>
+      </>
     );
   }
 
