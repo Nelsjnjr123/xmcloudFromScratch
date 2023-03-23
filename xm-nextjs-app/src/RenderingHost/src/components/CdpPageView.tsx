@@ -24,7 +24,6 @@ const CdpPageView = (): JSX.Element => {
    */
   const createPageView = async (page: string, language: string, pageVariantId: string) => {
     const pointOfSale = PosResolver.resolve(language);
-    console.log(`${pointOfSale}ooooooooooooooooooooooooooooooooooooooooooooooo`)
     const engage = await init({
       clientKey: process.env.NEXT_PUBLIC_CDP_CLIENT_KEY || '',
       targetURL: process.env.NEXT_PUBLIC_CDP_TARGET_URL || '',
@@ -33,8 +32,6 @@ const CdpPageView = (): JSX.Element => {
       // Cookie may be created in personalize middleware (server), but if not we should create it here
       forceServerCookieMode: false,
     });
-    console.log(`${pageVariantId}ooooooooooooooooooooooooooooooooooooooooooooooo`)
-    console.log(`${pageVariantId}ooooooooooooooooooooooooooooooooooooooooooooooo`)
     engage.pageView({
       channel: 'WEB',
       currency: 'USD',
@@ -66,10 +63,9 @@ const CdpPageView = (): JSX.Element => {
     }
     const language = route.itemLanguage || config.defaultLanguage;
     const pageVariantId = CdpHelper.getPageVariantId(route.itemId, language, variantId as string);
-      createPageView(route.name, language, pageVariantId);
+    createPageView(route.name, language, pageVariantId);
   }, [pageState, route, variantId]);
-  console.log(`${variantId}nelenelenelenelenlenooooooooooooooooooooooooooooooooooooooooooooooo`)
-  console.log(`${variantId}nelenelenelenelenlenooooooooooooooooooooooooooooooooooooooooooooooo`)
+
   return <></>;
 };
 
